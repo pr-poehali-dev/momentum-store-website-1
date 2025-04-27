@@ -54,36 +54,12 @@ const Index = () => {
           </div>
         </section>
         
-        {/* Коллекции */}
-        <section className="py-16">
-          <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold mb-12 text-center">Наши коллекции</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <CollectionCard 
-                title="Классика" 
-                image="https://images.unsplash.com/photo-1539874754764-5a96559165b0?ixlib=rb-4.0.3&auto=format&fit=crop&q=80&w=600"
-                description="Элегантные модели для деловых встреч и особых случаев"
-              />
-              <CollectionCard 
-                title="Спорт" 
-                image="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?ixlib=rb-4.0.3&auto=format&fit=crop&q=80&w=600"
-                description="Надежные часы для активного образа жизни"
-              />
-              <CollectionCard 
-                title="Премиум" 
-                image="https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3?ixlib=rb-4.0.3&auto=format&fit=crop&q=80&w=600"
-                description="Роскошные реплики известных брендов"
-              />
-            </div>
-          </div>
-        </section>
-        
         {/* Преимущества */}
-        <section className="py-16 bg-gray-50">
+        <section className="py-16 bg-white">
           <div className="container mx-auto px-4">
             <h2 className="text-3xl font-bold mb-12 text-center">Наши преимущества</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="bg-white p-8 rounded-lg shadow-sm text-center">
+              <div className="bg-gray-50 p-8 rounded-lg shadow-sm text-center">
                 <div className="inline-flex items-center justify-center w-16 h-16 mb-6 rounded-full bg-black text-white">
                   <span className="text-xl">🔍</span>
                 </div>
@@ -92,7 +68,7 @@ const Index = () => {
                   Высококачественные реплики премиальных брендов на любой вкус
                 </p>
               </div>
-              <div className="bg-white p-8 rounded-lg shadow-sm text-center">
+              <div className="bg-gray-50 p-8 rounded-lg shadow-sm text-center">
                 <div className="inline-flex items-center justify-center w-16 h-16 mb-6 rounded-full bg-black text-white">
                   <span className="text-xl">💰</span>
                 </div>
@@ -101,7 +77,7 @@ const Index = () => {
                   Превосходное качество по разумной стоимости без переплат
                 </p>
               </div>
-              <div className="bg-white p-8 rounded-lg shadow-sm text-center">
+              <div className="bg-gray-50 p-8 rounded-lg shadow-sm text-center">
                 <div className="inline-flex items-center justify-center w-16 h-16 mb-6 rounded-full bg-black text-white">
                   <span className="text-xl">🚚</span>
                 </div>
@@ -140,34 +116,6 @@ const Index = () => {
         </section>
       </main>
       <Footer />
-    </div>
-  );
-};
-
-const CollectionCard = ({ 
-  title, 
-  image, 
-  description 
-}: { 
-  title: string; 
-  image: string; 
-  description: string 
-}) => {
-  return (
-    <div className="group relative overflow-hidden rounded-lg hover-scale">
-      <div className="absolute inset-0 bg-black opacity-30 transition-opacity group-hover:opacity-20"></div>
-      <img 
-        src={image} 
-        alt={title} 
-        className="w-full h-80 object-cover transition-transform duration-700 group-hover:scale-110"
-      />
-      <div className="absolute inset-0 flex flex-col justify-end p-6">
-        <h3 className="text-2xl font-bold text-white mb-2">{title}</h3>
-        <p className="text-white mb-4">{description}</p>
-        <Button asChild variant="outline" className="bg-transparent border-white text-white hover:bg-white hover:text-black">
-          <Link to="/catalog">Смотреть коллекцию</Link>
-        </Button>
-      </div>
     </div>
   );
 };

@@ -2,7 +2,6 @@
 import { useState } from "react";
 import { ShoppingCart, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/components/ui/use-toast";
 import { useCart } from "@/hooks/useCart";
 
@@ -12,6 +11,7 @@ interface Product {
   brand: string;
   price: number;
   image: string;
+  description?: string;
   category?: string;
 }
 
@@ -71,12 +71,6 @@ const ProductCard = ({ product }: ProductCardProps) => {
             <Heart className={`h-5 w-5 ${isFavorite ? 'fill-current' : ''}`} />
           </Button>
         </div>
-        
-        {product.category === 'luxury' && (
-          <Badge className="absolute top-3 left-3 bg-black text-white">
-            Премиум
-          </Badge>
-        )}
       </div>
       
       <div className="p-4">
@@ -87,6 +81,11 @@ const ProductCard = ({ product }: ProductCardProps) => {
           <h2 className="font-bold text-lg">
             {product.name}
           </h2>
+          {product.description && (
+            <p className="text-sm text-gray-600 mt-1 line-clamp-2">
+              {product.description}
+            </p>
+          )}
         </div>
         
         <div className="mt-4 flex justify-between items-center">
