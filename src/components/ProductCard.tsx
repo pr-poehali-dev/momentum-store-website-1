@@ -1,12 +1,18 @@
 
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { ShoppingCart, Heart } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { useToast } from "@/components/ui/use-toast";
+import { useCart } from "@/hooks/useCart";
 
-export interface Product {
-  id: string;
+interface Product {
+  id: number;
   name: string;
+  brand: string;
   price: number;
-  imageUrl: string;
-  category: string;
+  image: string;
+  category?: string;
 }
 
 interface ProductCardProps {
@@ -14,24 +20,88 @@ interface ProductCardProps {
 }
 
 const ProductCard = ({ product }: ProductCardProps) => {
+  const [isHovered, setIsHovered] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(false);
+  const { toast } = useToast();
+  const { addToCart } = useCart();
+
+  const handleAddToCart = () => {
+    addToCart(product);
+    toast({
+      title: "Товар добавлен в корзину",
+      description: `${product.brand} ${product.name}`,
+    });
+  };
+
+  const handleFavoriteToggle = () => {
+    setIsFavorite(!isFavorite);
+    toast({
+      title: isFavorite ? "Удалено из избранного" : "Добавлено в избранное",
+      description: `${product.brand} ${product.name}`,
+    });
+  };
+
+  const formatPrice = (price: number) => {
+    return new Intl.NumberFormat("ru-RU", {
+      style: "currency",
+      currency: "RUB",
+      maximumFractionDigits: 0,
+    }).format(price);
+  };
+
   return (
-    <div className="group">
-      <div className="aspect-square w-full overflow-hidden bg-gray-100 mb-4 relative">
+    <div 
+      className="group bg-white border border-gray-200 rounded-md overflow-hidden transition-all duration-300 hover:shadow-lg hover-scale"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <div className="relative pb-[100%] overflow-hidden">
         <img
-          src={product.imageUrl}
-          alt={product.name}
-          className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
+          src={product.image}
+          alt={`${product.brand} ${product.name}`}
+          className={`absolute inset-0 w-full h-full object-cover transition-transform duration-700 ${isHovered ? 'scale-110' : 'scale-100'}`}
         />
-        <div className="absolute inset-0 bg-black bg-opacity-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:bg-opacity-10 group-hover:opacity-100">
-          <button className="bg-white text-black py-2 px-4 text-sm font-medium">
-            Быстрый просмотр
-          </button>
+        <div className="absolute top-3 right-3">
+          <Button 
+            variant="outline" 
+            size="icon" 
+            className={`rounded-full bg-white ${isFavorite ? 'text-red-500' : 'text-gray-400'}`}
+            onClick={handleFavoriteToggle}
+          >
+            <Heart className={`h-5 w-5 ${isFavorite ? 'fill-current' : ''}`} />
+          </Button>
         </div>
+        
+        {product.category === 'luxury' && (
+          <Badge className="absolute top-3 left-3 bg-black text-white">
+            Премиум
+          </Badge>
+        )}
       </div>
-      <div>
-        <h3 className="text-sm font-medium">{product.name}</h3>
-        <p className="mt-1 text-sm">{product.category}</p>
-        <p className="mt-1 font-medium">{product.price.toLocaleString()} ₽</p>
+      
+      <div className="p-4">
+        <div className="mb-1">
+          <h3 className="font-medium text-sm text-gray-500">
+            {product.brand}
+          </h3>
+          <h2 className="font-bold text-lg">
+            {product.name}
+          </h2>
+        </div>
+        
+        <div className="mt-4 flex justify-between items-center">
+          <div className="font-bold text-lg">
+            {formatPrice(product.price)}
+          </div>
+          
+          <Button 
+            onClick={handleAddToCart}
+            className="bg-black text-white hover:bg-gray-800"
+          >
+            <ShoppingCart className="h-4 w-4 mr-2" />
+            В корзину
+          </Button>
+        </div>
       </div>
     </div>
   );
