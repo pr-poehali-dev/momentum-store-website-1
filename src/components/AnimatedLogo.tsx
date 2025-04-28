@@ -41,7 +41,7 @@ export const AnimatedLogo = ({ className = "w-40 h-40" }: AnimatedLogoProps) => 
           }}
         >
           <svg width="40" height="40" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M5 5H20V60L40 40V5H60V60L40 80H20L5 60V5Z" stroke="black" strokeWidth="2" fill="transparent" />
+            <path d="M5 5H20V60L40 40V5H60V60L40 80H20L5 60V5Z" fill="black" />
           </svg>
         </div>
         
@@ -55,7 +55,7 @@ export const AnimatedLogo = ({ className = "w-40 h-40" }: AnimatedLogoProps) => 
           }}
         >
           <svg width="40" height="40" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M5 5H20V60L40 40V5H60V60L40 80H20L5 60V5Z" stroke="black" strokeWidth="2" fill="transparent" />
+            <path d="M5 5H20V60L40 40V5H60V60L40 80H20L5 60V5Z" fill="black" />
           </svg>
         </div>
         
@@ -70,7 +70,7 @@ export const AnimatedLogo = ({ className = "w-40 h-40" }: AnimatedLogoProps) => 
           }}
         >
           <svg width="40" height="40" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M5 5H20V60L40 40V5H60V60L40 80H20L5 60V5Z" stroke="black" strokeWidth="2" fill="transparent" />
+            <path d="M5 5H20V60L40 40V5H60V60L40 80H20L5 60V5Z" fill="black" />
           </svg>
         </div>
         
