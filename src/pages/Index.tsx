@@ -15,7 +15,7 @@ const Index = () => {
         <section className="bg-white py-20 md:py-32">
           <div className="container mx-auto px-4">
             <div className="flex flex-col items-center text-center">
-              <AnimatedLogo className="w-48 h-48 md:w-60 md:h-60 mb-6" />
+              <AnimatedLogo className="w-80 h-80 md:w-96 md:h-96 mb-6" />
               <h1 className="text-4xl md:text-6xl font-bold mb-6 tracking-tighter">
                 Время выбирать лучшее
               </h1>
